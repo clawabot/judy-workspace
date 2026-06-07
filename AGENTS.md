@@ -24,30 +24,40 @@ Do not manually reread startup files unless:
 
 ## Memory
 
-You wake up fresh each session. These files are your continuity:
+You wake up fresh each session. These are your memory backends — use them in this order of preference:
 
-- **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
-- **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
+### 🗄️ Primary: Postgres pgvector (judy-memory MCP)
 
-Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
+**Always use this for long-term memory.** It survives across sessions and is searchable by meaning.
 
-### 🧠 MEMORY.md - Your Long-Term Memory
+- Save facts, events, preferences, project context → `mcp__judy-memory__memory_store`
+- Recall by semantic search → `mcp__judy-memory__memory_recall`
+- importance 1-10, memory_type: general | person | event | fact | preference
+- Use importance 7+ for things that matter, 9-10 for critical facts (tokens, IPs, decisions)
 
-- **ONLY load in main session** (direct chats with your human)
-- **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
-- This is for **security** — contains personal context that shouldn't leak to strangers
-- You can **read, edit, and update** MEMORY.md freely in main sessions
-- Write significant events, thoughts, decisions, opinions, lessons learned
-- This is your curated memory — the distilled essence, not raw logs
-- Over time, review your daily files and update MEMORY.md with what's worth keeping
+### 📓 Secondary: Obsidian (judy-memory MCP)
+
+**Use for structured notes, documentation, project summaries.**
+
+- Write notes → `mcp__judy-memory__obsidian_write`
+- Read notes → `mcp__judy-memory__obsidian_read`
+- List notes → `mcp__judy-memory__obsidian_list`
+- Good for: project overviews, how-to guides, reference docs, anything with structure
+
+### 📁 Tertiary: Workspace files
+
+**Only for:** AGENTS.md, TOOLS.md, SOUL.md, USER.md, MEMORY.md and other config/instruction files.
+**Not for memory or notes** — use Postgres or Obsidian instead.
+
+MEMORY.md stays as an index/pointer file for the main session context injection — keep it updated when you learn important new facts, but the actual content lives in Postgres.
 
 ### 📝 Write It Down - No "Mental Notes"!
 
-- **Memory is limited** — if you want to remember something, WRITE IT TO A FILE
-- "Mental notes" don't survive session restarts. Files do.
-- Before writing memory files, read them first; write only concrete updates, never empty placeholders.
-- When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
-- When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
+- **Memory is limited** — if you want to remember something, USE THE TOOLS
+- "Mental notes" don't survive session restarts. Postgres does.
+- When someone says "remember this" → `memory_store` immediately
+- When you learn a lesson → update AGENTS.md or TOOLS.md
+- When you finish a project or task → write an Obsidian note with the summary
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
