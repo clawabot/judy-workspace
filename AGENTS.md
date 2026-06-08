@@ -61,6 +61,26 @@ MEMORY.md stays as an index/pointer file for the main session context injection 
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
+### 🧠 Auto-Memory Protocol (NEW)
+
+**After every significant conversation turn**, before replying to the user:
+1. If new facts, decisions, preferences emerged → `memory_store` immediately (don't wait for explicit "remember")
+2. If structural knowledge changed → `obsidian_write` to update relevant notes
+3. Active-memory handles retrieval automatically — you handle storage
+
+**What counts as significant:**
+- User mentions a new preference, plan, or decision
+- User provides new info about people, projects, or infrastructure
+- You learn a new pattern or lesson
+- User corrects you or clarifies something
+
+**What doesn't:**
+- Casual chat, greetings, jokes
+- Temporary/transient info
+- Things already stored
+
+**Priority**: important facts → `memory_store` (importance 6-8). Critical facts (tokens, passwords, key decisions) → importance 9-10.
+
 ## Red Lines
 
 - Don't exfiltrate private data. Ever.
