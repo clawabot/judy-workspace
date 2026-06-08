@@ -78,3 +78,40 @@ password authentication failed for user "judy"
 
 ## Итог
 Основная работа выполнена через Obsidian. Postgres требует диагностики.
+
+---
+
+# Второй запуск — 2026-06-08 (12:20 UTC)
+
+**Модель:** claude-sonnet-4-6 (переключено с deepseek — cron bug fix)
+**Причина:** предыдущий запуск на deepseek-v4-pro вернул 18 пустых ответов, abort по таймауту
+
+## Статус сервисов
+
+| Сервис | Статус |
+|--------|--------|
+| PostgreSQL | ✅ OK (18 записей) |
+| Obsidian | ✅ OK (27 заметок) |
+| Redis | ✅ OK (2 ключа) |
+
+## Новые facts (добавлено 4 записи)
+
+- Аудит безопасности judy-infra: 8 CRITICAL (importance=9)
+- LanceDB migration proposal от Риты (importance=8)
+- Агент Нейрон создан (importance=6)
+- DeepSeek не работает в cron-сессиях (importance=8)
+
+## Obsidian обновлено
+
+- `люди/макс.md` — события дня: аудит, LanceDB, Нейрон, cron fix
+- `система/завтра.md` — добавлены security tasks (🔴 СРОЧНО), LanceDB решение
+
+## ALERTs
+
+- ⚠️ 8 CRITICAL security issues — ждут Макса
+- ⚠️ 2 sub-agent'а завершились FAILED (3bd0580e, 0eb77568) — причина неизвестна
+- ℹ️ Postgres теперь стабилен (в отличие от ночного запуска)
+
+## Итог
+
+Postgres стабилен, оба сервиса работают. Память синхронизирована. Отчёт и дневник записаны.
