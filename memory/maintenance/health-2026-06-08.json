@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-06-08T14:12:00Z",
+  "mcp_status": "ok",
+  "gateway_errors": 0,
+  "alerts": [
+    {
+      "service": "ha",
+      "vmid": 100,
+      "type": "ram_high",
+      "ram_pct": 91,
+      "threshold": 85,
+      "severity": "warning"
+    }
+  ],
+  "services": [
+    {"name": "nginx", "status": "running", "vmid": 102, "cpu": 0.1, "ram": 8, "disk": 33, "uptime_h": 226},
+    {"name": "openclaw", "status": "running", "vmid": 101, "cpu": 0.4, "ram": 33, "disk": 0, "uptime_h": 45.1},
+    {"name": "dbgate", "status": "running", "vmid": 104, "cpu": 6.3, "ram": 67, "disk": 20, "uptime_h": 203.2},
+    {"name": "ha", "status": "running", "vmid": 100, "cpu": 0.8, "ram": 91, "disk": 0, "uptime_h": 290.5, "alert": "RAM 91%"},
+    {"name": "immich", "status": "running", "vmid": 105, "cpu": 0.2, "ram": 17, "disk": 2, "uptime_h": 119},
+    {"name": "judy-infra (vmid=104 services)", "status": "running", "vmid": 104, "cpu": 7.1, "ram": 67, "disk": 20},
+    {"name": "explorer", "status": "running", "vmid": 110, "cpu": 0, "ram": 3, "disk": 25, "uptime_h": 32},
+    {"name": "backup", "status": "running", "vmid": 108, "cpu": 2.9, "ram": 15, "disk": 62, "uptime_h": 2.7},
+    {"name": "torrent", "status": "running", "vmid": 107, "cpu": 0.1, "ram": 4, "disk": 5, "uptime_h": 32.2},
+    {"name": "plex", "status": "running", "vmid": 106, "cpu": 0.1, "ram": 4, "disk": 17, "uptime_h": 32.3}
+  ]
+}
