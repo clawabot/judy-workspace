@@ -39,7 +39,7 @@ You wake up fresh each session. These are your memory backends — use them in t
 
 - Save facts, events, preferences, project context → `mcp__judy-memory__memory_store`
 - Recall by semantic search → `mcp__judy-memory__memory_recall`
-- importance 1-10, memory_type: general | person | event | fact | preference
+- importance 1-10, memory_type: general | person | event | fact | preference | lesson
 - Use importance 7+ for things that matter, 9-10 for critical facts (tokens, IPs, decisions)
 
 ### 📓 Secondary: Obsidian (judy-memory MCP)
@@ -53,10 +53,10 @@ You wake up fresh each session. These are your memory backends — use them in t
 
 ### 📁 Tertiary: Workspace files
 
-**Only for:** AGENTS.md, TOOLS.md, SOUL.md, USER.md, MEMORY.md and other config/instruction files.
+**Only for:** AGENTS.md, TOOLS.md, SOUL.md, USER.md, HEARTBEAT.md and other config/instruction files.
 **Not for memory or notes** — use Postgres or Obsidian instead.
 
-MEMORY.md stays as an index/pointer file for the main session context injection — keep it updated when you learn important new facts, but the actual content lives in Postgres.
+⚠️ MEMORY.md не используется — заменён на активную память (Postgres + Obsidian). Не создавать.
 
 ### 📝 Write It Down - No "Mental Notes"!
 
@@ -68,25 +68,28 @@ MEMORY.md stays as an index/pointer file for the main session context injection 
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
-### 🧠 Auto-Memory Protocol (NEW)
+### 🧠 Auto-Memory Protocol (ОБЯЗАТЕЛЬНО)
 
-**After every significant conversation turn**, before replying to the user:
-1. If new facts, decisions, preferences emerged → `memory_store` immediately (don't wait for explicit "remember")
-2. If structural knowledge changed → `obsidian_write` to update relevant notes
-3. Active-memory handles retrieval automatically — you handle storage
+**После каждого значимого поворота в разговоре**, перед ответом пользователю:
+1. Новые факты, решения, предпочтения → `memory_store` сразу
+2. Структурные изменения → `obsidian_write`
+3. Active-memory делает retrieval автоматически — ты делаешь storage
 
-**What counts as significant:**
-- User mentions a new preference, plan, or decision
-- User provides new info about people, projects, or infrastructure
-- You learn a new pattern or lesson
-- User corrects you or clarifies something
+**Что считается значимым:**
+- Новые предпочтения, планы, решения пользователя
+- Новая информация о людях, проектах, инфраструктуре
+- Новый паттерн или урок
+- Пользователь поправил или уточнил что-то
+- Изменения в конфигурации (cron, файлы, канбан)
 
-**What doesn't:**
-- Casual chat, greetings, jokes
-- Temporary/transient info
-- Things already stored
+**Что не считается:**
+- Болтовня, приветствия, шутки
+- Временные/переходные данные
+- То что уже сохранено
 
-**Priority**: important facts → `memory_store` (importance 6-8). Critical facts (tokens, passwords, key decisions) → importance 9-10.
+**Приоритет**: важные факты → importance 6-8. Критичное (токены, пароли, ключевые решения) → importance 9-10.
+
+⚠️ Это не опционально. Делать всегда.
 
 ## Red Lines
 
@@ -236,14 +239,12 @@ You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it
 
 ### 🔄 Memory Maintenance (During Heartbeats)
 
-Periodically (every few days), use a heartbeat to:
+Основное обслуживание памяти — в ночном кроне memory-maintenance (3:00 МСК).
 
-1. Read through recent `memory/YYYY-MM-DD.md` files
-2. Identify significant events, lessons, or insights worth keeping long-term
-3. Update `MEMORY.md` with distilled learnings
-4. Remove outdated info from MEMORY.md that's no longer relevant
-
-Think of it like a human reviewing their journal and updating their mental model. Daily files are raw notes; MEMORY.md is curated wisdom.
+Во время heartbeats, если есть свободный слот:
+1. Проверить свежие maintenance-отчёты в memory/maintenance/
+2. Устаревшие ключи Redis → `memory_keys` + удалить ненужные
+3. Сверить что важные факты из недавних разговоров попали в Postgres
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 

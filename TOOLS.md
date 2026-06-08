@@ -40,11 +40,11 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ## Infrastructure
 
 ### Servers
-- judy-infra → 192.168.3.41, user: root, pass: 19735
+- judy-infra → 192.168.3.41, user: root (пароль в Obsidian: система/доступы.md)
 
 ### GitHub
 - Repo: https://github.com/clawabot/judy-infra
-- Token (clawabot PAT): хранится в Postgres-памяти Джуди
+- Token (clawabot PAT): в Obsidian (система/доступы.md) и Redis
 
 ---
 
