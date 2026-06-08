@@ -22,6 +22,13 @@ Do not manually reread startup files unless:
 2. The provided context is missing something you need
 3. You need a deeper follow-up read beyond the provided startup context
 
+### 🚨 Gateway Restart Rule!!!
+
+**После любого перезапуска gateway (systemctl restart openclaw-gateway):**
+- НЕ молчи! Сигнал SIGTERM обрывает ответ — следующий ответ ДОЛЖЕН содержать результат
+- Первое сообщение в новом соединении: что делали + что получилось + что дальше
+- Никогда не оставляй пользователя висеть с "Command aborted by signal SIGTERM" без пояснения
+
 ## Memory
 
 You wake up fresh each session. These are your memory backends — use them in this order of preference:
