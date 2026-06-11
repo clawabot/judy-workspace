@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-06-11T12:53:00Z",
+  "checks": {
+    "graphiti": "ok",
+    "mcp": "ok",
+    "gateway": "ok"
+  },
+  "services": {
+    "nginx": { "status": "running", "ram": 8, "disk": 33 },
+    "openclaw": { "status": "running", "ram": 33, "disk": 0 },
+    "dbgate": { "status": "running", "ram": 67, "disk": 20 },
+    "ha": { "status": "running", "ram": 91, "disk": 0, "alert": "RAM high, SSH refused" },
+    "immich": { "status": "running", "ram": 17, "disk": 2 },
+    "debian_lxc": { "status": "running", "ram_used": 88, "ram_available": "1.0Gi", "disk": 37 },
+    "explorer": { "status": "running", "ram": 3, "disk": 25 },
+    "mcp_service": { "status": "running", "ram": 67, "disk": 20 },
+    "backup": { "status": "running", "ram": 15, "disk": 62 },
+    "torrent": { "status": "running", "ram": 4, "disk": 5 },
+    "plex": { "status": "running", "ram": 4, "disk": 17 }
+  },
+  "docker_containers": {
+    "judy-postgres-mcp": "up 9h (0.70%)",
+    "judy-nginx-graphiti": "up 9h (0.09%)",
+    "judy-graphiti": "up 10h healthy (2.37%)",
+    "judy-n8n": "up 13h (5.62%)",
+    "judy-couchdb": "up 14h healthy (1.76%)",
+    "judy-postgres": "up 15h healthy (0.88%)",
+    "judy-grafana": "up 16h (2.49%)",
+    "judy-prometheus": "up 16h (0.39%)",
+    "app-web": "up 34h (0.10%)",
+    "app-api": "up 34h (2.38%)",
+    "judy-mcp": "up 2d (1.51%)",
+    "judy-embeddings": "up 3d healthy (51.62%)",
+    "judy-redis": "up 3d healthy (0.09%)",
+    "app-minio": "up 11d (1.80%)",
+    "judy-dbgate": "up 11d (3.22%)"
+  },
+  "actions_taken": [
+    "docker system prune -f: reclaimed ~8.2GB build cache + ~7GB images"
+  ],
+  "gateway_errors_yesterday": [
+    "gateway restart loop (23:50 UTC) — systemd Restart=always protection, resolved",
+    "claude-cli FailoverError on claude-sonnet-4-6",
+    "mem0 embedding auto-detect failure (OpenAI API key missing)",
+    "chrome MCP unreachable: 192.168.3.99:3000 EHOSTUNREACH",
+    "homeassistant MCP 401 auth error"
+  ]
+}
